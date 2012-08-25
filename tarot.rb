@@ -86,7 +86,7 @@ before do
 ]
 end
 
-get '/tarot' do
+get '/tarot/?' do
   erb %{
     <% @deck.each do |card| %>
     <h1><%= card[:name] %></h1> 
@@ -95,32 +95,33 @@ get '/tarot' do
   }
 end
 
-get '/tarot/card' do
+get '/tarot/card/?' do
   erb %{
     <% card = @deck[(rand(78))] %>
     <h1><%= card[:name] %></h1> 
     <img src="<%= card[:image] %>" />
+	<p><a href="/tarot/card">get another card</a></p>
   }
 end
 
-def getQuestion
-  puts "type your question:"
-  @question = gets
-end
+#def getQuestion
+#  puts "type your question:"
+#  @question = gets
+#end
 
-def get3Cards
-  # slice! so we don't get the same card twice
-  @past = @deck.slice!(rand(78))
-  @present = @deck.slice!(rand(77))
-  @future = @deck.slice!(rand(76))
-end
+#def get3Cards
+## slice! so we don't get the same card twice
+#  @past = @deck.slice!(rand(78))
+#  @present = @deck.slice!(rand(77))
+#  @future = @deck.slice!(rand(76))
+#end
 
-def giveAnswer
-  puts "here are the cards realted to the question: #{@question}"
-  puts " in the past:     #{@past}"
-  puts " in the present:  #{@present}"
-  puts " in the future:   #{@future}"
-end
+#def giveAnswer
+#  puts "here are the cards realted to the question: #{@question}"
+#  puts " in the past:     #{@past}"
+#  puts " in the present:  #{@present}"
+#  puts " in the future:   #{@future}"
+#end
 
 #getQuestion
 #get3Cards
