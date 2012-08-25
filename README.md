@@ -1,10 +1,10 @@
 ruby-tarot
 ==========
 
-a tarot card reader, tarot.rb
+this staryed out as a tarot card reader for the command line based on the three-card-spread idea: http://www.tarotpedia.com/wiki/Three_card_spread
 
-this is just a bit of fun, a tarot card reader for the command line
+I came across a set of card image that are out of copyright and s made it in to a Sinatra webapp
 
-it's based on the three-card-spread idea: http://www.tarotpedia.com/wiki/Three_card_spread
+You can see the full deck at http://ruby-tarot.herokuapp.com/tarot
 
-(ttarot.rb is all you need, the other files are odds and sods i meade while thinking about more complex approaches)
+Or pull a random card at http://ruby-tarot.herokuapp.com/tarot/card 
