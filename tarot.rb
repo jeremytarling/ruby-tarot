@@ -111,8 +111,6 @@ get '/tarot/card/?' do
   erb %{
     <h1><%= @card[:name] %></h1> 
     <img src="<%= @card[:image] %>" />
-	<p><a href="/tarot/card">get a card</a></p>
-	<p><a href="/tarot/three-card">get three cards</a></p>
   }
 end
 
