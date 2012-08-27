@@ -86,6 +86,17 @@ before do
 ]
 end
 
+get '/' do
+  erb %{
+	<h1>a ruby tarot card reader</h1>
+	<p>pick a random card: <a href="/tarot/card">/tarot/card</a></p>
+	<p>pick three cards: <a href="/tarot/three-card">/tarot/three-card</a></p>
+	<p>list all cards: <a href="/tarot">/tarot</a></p>
+	<p>source code: <a href="https://github.com/jeremytarling/ruby-tarot">https://github.com/jeremytarling/ruby-tarot</a></p>
+  }
+end
+
+
 get '/tarot/?' do
   erb %{
     <% @deck.each do |card| %>
@@ -96,11 +107,28 @@ get '/tarot/?' do
 end
 
 get '/tarot/card/?' do
+  @card = @deck[(rand(78))] 
   erb %{
-    <% card = @deck[(rand(78))] %>
-    <h1><%= card[:name] %></h1> 
-    <img src="<%= card[:image] %>" />
-	<p><a href="/tarot/card">get another card</a></p>
+    <h1><%= @card[:name] %></h1> 
+    <img src="<%= @card[:image] %>" />
+	<p><a href="/tarot/card">get a card</a></p>
+	<p><a href="/tarot/three-card">get three cards</a></p>
+  }
+end
+
+get '/tarot/three-card/?' do
+  past = @deck.slice!(rand(78))
+  present = @deck.slice!(rand(77))
+  future = @deck.slice!(rand(76))
+  @spread = [past, present, future]
+  erb %{
+	<h1>the Three Card spread</h1>
+    <% @spread.each do |card| %>
+	<div style="display: inline; float:left; padding:11px">
+      <h2><%= card[:name] %></h2> 
+      <img src="<%= card[:image] %>" />
+	</div>
+    <% end %>
   }
 end
 
@@ -109,22 +137,10 @@ end
 #  @question = gets
 #end
 
-#def get3Cards
-## slice! so we don't get the same card twice
-#  @past = @deck.slice!(rand(78))
-#  @present = @deck.slice!(rand(77))
-#  @future = @deck.slice!(rand(76))
-#end
-
 #def giveAnswer
 #  puts "here are the cards realted to the question: #{@question}"
 #  puts " in the past:     #{@past}"
 #  puts " in the present:  #{@present}"
 #  puts " in the future:   #{@future}"
 #end
-
-#getQuestion
-#get3Cards
-#giveAnswer
-
 

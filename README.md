@@ -5,7 +5,8 @@ This started out as a tarot card reader for the command line based on the three-
 
 Then I came across a set of card image that are out of copyright and made it in to a Sinatra webapp
 
-Random card: http://ruby-tarot.herokuapp.com/tarot/card 
-
-Full deck: http://ruby-tarot.herokuapp.com/tarot
+To do:
+ - add other card metadata (descriptions, corresponsences, etc)
+ - modularise - basically one file atm
+ - add other spreads (celtic cross etc) + explanations
 
