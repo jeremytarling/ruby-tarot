@@ -89,32 +89,23 @@ end
 get '/' do
   erb %{
 	<h1>a ruby tarot card reader</h1>
-	<p>pick a random card: <a href="/tarot/card">/tarot/card</a></p>
-	<p>pick three cards: <a href="/tarot/three-card">/tarot/three-card</a></p>
-	<p>list all cards: <a href="/tarot">/tarot</a></p>
+	<p>pick a random card: <a href="/one-card">/one-card</a></p>
+	<p>pick three cards: <a href="/three-cards">/three-cards</a></p>
+	<p>list all cards: <a href="/all-cards">/all-cards</a></p>
 	<p>source code: <a href="https://github.com/jeremytarling/ruby-tarot">https://github.com/jeremytarling/ruby-tarot</a></p>
   }
 end
 
-
-get '/tarot/?' do
-  erb %{
-    <% @deck.each do |card| %>
-    <h1><%= card[:name] %></h1> 
-    <img src="<%= card[:image] %>" />
-    <% end %>
-  }
-end
-
-get '/tarot/card/?' do
+get '/one-card/?' do
   @card = @deck[(rand(78))] 
   erb %{
     <h1><%= @card[:name] %></h1> 
     <img src="<%= @card[:image] %>" />
+	<p><a href="/">home</a></p>
   }
 end
 
-get '/tarot/three-card/?' do
+get '/three-cards/?' do
   past = @deck.slice!(rand(78))
   present = @deck.slice!(rand(77))
   future = @deck.slice!(rand(76))
@@ -122,11 +113,22 @@ get '/tarot/three-card/?' do
   erb %{
 	<h1>the Three Card spread</h1>
     <% @spread.each do |card| %>
-	<div style="display: inline; float:left; padding:11px">
-      <h2><%= card[:name] %></h2> 
-      <img src="<%= card[:image] %>" />
-	</div>
+	  <div style="display: inline; float:left; padding:11px">
+        <h2><%= card[:name] %></h2> 
+        <img src="<%= card[:image] %>" />
+	  </div>
     <% end %>
+	<p style="clear:both"><a href="/">home</a></p>
+  }
+end
+
+get '/all-cards/?' do
+  erb %{
+    <% @deck.each do |card| %>
+      <h1><%= card[:name] %></h1> 
+      <img src="<%= card[:image] %>" />
+    <% end %>
+	<p><a href="/">home</a></p>
   }
 end
 
