@@ -126,15 +126,4 @@ get '/all-cards/?' do
   }
 end
 
-#def getQuestion
-#  puts "type your question:"
-#  @question = gets
-#end
-
-#def giveAnswer
-#  puts "here are the cards realted to the question: #{@question}"
-#  puts " in the past:     #{@past}"
-#  puts " in the present:  #{@present}"
-#  puts " in the future:   #{@future}"
-#end
 
